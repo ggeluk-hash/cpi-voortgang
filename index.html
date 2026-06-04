@@ -22,6 +22,11 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 .ac{color:var(--blue)}
 .divider{width:46px;height:4px;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;margin:12px 0 18px}
 .datum{font-size:12px;color:var(--muted);font-weight:600}
+.tagline{font-size:15px;font-weight:700;color:var(--blue);margin:8px 0 4px;letter-spacing:.2px}
+.subline{font-size:12.5px;color:#6B7280;line-height:1.5;margin-bottom:6px}
+.compmini{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:#2f4156;line-height:1.45;background:rgba(0,94,184,.05);border:1px solid rgba(0,94,184,.18);border-radius:10px;padding:9px 13px;margin:6px 0 4px}
+.livelink{font-size:10.5px;color:#9aa0a8;text-align:center;margin-top:8px;word-break:break-all}
+.livelink a{color:var(--blue);text-decoration:none}
 .statusnu{background:var(--bg);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:13px 18px;font-size:13.5px;line-height:1.55;color:#333;margin:14px 0 4px}
 .statusnu b{color:var(--blue)}
 /* tijdlijn-balk */
@@ -70,6 +75,12 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 .st-klaar{background:#E8F5EE;color:var(--green)}
 /* scherm 2 fases */
 .sectie-h{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.compliance{border:1.5px solid var(--blue);border-radius:16px;background:linear-gradient(135deg,rgba(0,94,184,.06),rgba(0,154,68,.05));padding:14px 18px;margin:14px 0 4px}
+.compliance-h{font-size:13px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:8px}
+.compliance ul{list-style:none;margin-top:8px}
+.compliance li{font-size:12px;color:#2f4156;line-height:1.5;padding:4px 0 4px 22px;position:relative}
+.compliance li::before{content:"🛡️";position:absolute;left:0;font-size:11px}
+.compliance li b{color:var(--blue)}
 .fase{border:1.5px solid #E2E7EE;border-radius:16px;background:#fff;margin-bottom:11px;overflow:hidden}
 .fase.actief{border-color:var(--blue);box-shadow:0 4px 18px rgba(0,94,184,.12)}
 .fase.parallel{border-color:var(--green);background:rgba(0,154,68,.04)}
@@ -123,6 +134,10 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
 const UPDATED = '4 juni 2026';
+// tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
+const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
+const SUBLINE = 'Jij hoeft de export-regels niet te kennen; het bestand neemt je mee en de documenten kloppen.';
+const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
@@ -204,6 +219,12 @@ const MSDS = {titel:'MSDS', sub:'Eigen project · loopt parallel · voedt de gev
   {naam:'24/7-noodtelefoonregeling borgen + verantwoordelijkheid (RACI)', status:'uitgedacht', gedaan:[], todo:['Compliance-actie boven de techniek — escaleren naar Sander/Maurice.']},
 ]};
 
+const COMPLIANCE = {titel:'Compliance & audit — loopt door álle documenten heen', punten:[
+  ['Ingebouwd, niet achteraf.', 'de gereguleerde DG/ADR-velden (UN · klasse · verpakkingsgroep · oorsprong/REX · 0%-BTW) in het juiste formaat, op het juiste document.'],
+  ['Per onderdeel getoetst — groen licht.', 'een vast toets-/auditritme: je weet dat het klopt.'],
+  ['Eén consistent beeld.', 'colli, gewicht en ontvanger kloppen over álle documenten heen.'],
+]};
+
 const HORIZON = 'Buiten Excel (eigen business-case): een klantportal voor herhaalorders / een platform-/webversie. Niet ingepland — de visie, geen Excel-volgende-stap.';
 
 const BIJVANGST = {sub:'Inzichten en waarde die naar voren kwamen tijdens het werken aan dit project', items:[
@@ -230,15 +251,19 @@ const MILESTONES = [
   <div class="wrap"><div class="card">
     <div class="eye">Bint · Benfried International — exportafdeling</div>
     <h1>CPI 4.0 — <span class="ac">waar staan we</span>.</h1>
+    <div class="tagline" id="tagline"></div>
+    <div class="subline" id="subline"></div>
     <div class="divider"></div>
     <div class="datum" id="datum"></div>
     <div class="statusnu" id="statusnu"></div>
     <div class="tl" id="tl"></div>
     <div id="minibars"></div>
+    <div class="compmini" id="compmini"></div>
     <div class="uitdaging"><div class="t">De uitdaging die ik mezelf stel</div><div class="d" id="uitdaging"></div></div>
     <div class="gedaan"><div class="gedaan-t">Al gelegd — afgevinkt</div><ul id="gedaan"></ul></div>
     <button class="btn" onclick="go(2)">De stappen bekijken →</button>
     <div class="disclaimer" id="disc1"></div>
+    <div class="livelink" id="live1"></div>
   </div></div>
 </div>
 
@@ -250,6 +275,7 @@ const MILESTONES = [
     <div class="divider"></div>
     <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:8px">Klik een fase open voor de onderdelen — en een onderdeel voor wat er al gedaan is (✓) en wat er nog moet (→). De volgorde volgt hoe we bouwen.</p>
     <div class="legend" id="legend"></div>
+    <div class="compliance" id="compliance"></div>
     <div class="sectie-h">Tot 1.9 met pensioen — de oplevering (31 juli)</div>
     <div id="opl-list"></div>
     <div class="sectie-h">Daarna — verrijken & slimmer</div>
@@ -261,6 +287,7 @@ const MILESTONES = [
     <div class="bijvangst" id="bijvangst"></div>
     <div class="voetnoot" id="voetnoot"></div>
     <div class="disclaimer" id="disc2"></div>
+    <div class="livelink" id="live2"></div>
     <button class="btn ghost" onclick="go(1)">← terug naar het overzicht</button>
   </div></div>
 </div>
@@ -282,6 +309,12 @@ document.getElementById('uitdaging').textContent = UITDAGING;
 document.getElementById('gedaan').innerHTML = GEDAAN.map(g=>`<li>${esc(g)}</li>`).join('');
 document.getElementById('disc1').textContent = DISCLAIMER;
 document.getElementById('disc2').textContent = DISCLAIMER;
+document.getElementById('tagline').textContent = TAGLINE;
+document.getElementById('subline').textContent = SUBLINE;
+document.getElementById('compmini').innerHTML = '🛡️ <span><b>Compliance &amp; audit</b> lopen door álle fases heen — ingebouwd + per onderdeel getoetst (groen licht). Detail op het volgende scherm.</span>';
+const liveHTML = `Live &amp; deelbaar: <a href="${LIVELINK}">${LIVELINK.replace('https://','')}</a> · laatst bijgewerkt ${UPDATED}`;
+document.getElementById('live1').innerHTML = liveHTML;
+document.getElementById('live2').innerHTML = liveHTML;
 
 // tijdlijn-balk — markers + labels zijn kinderen van de track; transform houdt ze binnen de rand
 const edgeTx = f => f>=0.88 ? '-92%' : f<=0.12 ? '-8%' : '-50%';
@@ -305,6 +338,7 @@ document.getElementById('minibars').innerHTML = mb;
 
 /* ── scherm 2 ── */
 document.getElementById('legend').innerHTML = ['klaar','testen','aanbouw','uitgedacht'].map(s=>`<span class="pill st-${s}">${STLABEL[s]}</span>`).join('');
+document.getElementById('compliance').innerHTML = `<div class="compliance-h">🛡️ ${esc(COMPLIANCE.titel)}</div><ul>${COMPLIANCE.punten.map(p=>`<li><b>${esc(p[0])}</b> ${esc(p[1])}</li>`).join('')}</ul>`;
 
 let UID = 0;
 function faseHTML(f){
