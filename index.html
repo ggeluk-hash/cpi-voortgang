@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '18 juni 2026';
+const UPDATED = '21 juni 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'De drie kern-documenten (CMR · Invoice · Paklijst) rollen nu als échte PDF uit één invoer — printer-onafhankelijk getest. De CMR is tot in de vakjes geijkt; Invoice en Paklijst komen nu óók getrouw op één A4. Wat rest: de laatste layout-details fijn-afstellen, de echte test op Windows, en per document het "ja, dit klopt" van de afdeling.';
+const STATUSNU = 'Invoice en Paklijst zien er nu uit zoals het hoort — getrouw gerenderd en strak op elkaar afgestemd, klaar om aan de baas te laten zien. De volgende — en beslissende — stap is de eerste echte test op Windows: één echte order erin, alle documenten eruit, en dan jouw oordeel "ja, dit klopt". Tot dat moment is niets "af". Het fundament (de klant- en artikellijsten) is al bewezen en draait er rustig onder.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -154,8 +154,6 @@ const GEDAAN = [
   'Invoice, Paklijst én CMR genereren al een document (nog te testen op Windows).',
   'MSDS: volledig extractie-schema (40+ velden) gevalideerd op een echte MSDS + smoke-test geslaagd.',
   'We weten nu wát we niet wisten over de export-regels — en het zit nu in het systeem, niet in iemands hoofd.',
-  'CMR (de vrachtbrief) tot in de vakjes vastgesteld + Invoice/Paklijst doorgelopen — de drie documenten zijn ontwerp-klaar voor de eerste echte render.',
-  'CMR, Invoice én Paklijst renderen nu als getrouwe PDF uit het Excel-bestand (printer-onafhankelijk) — van "ontwerp-klaar" naar "de eerste echte documenten rollen eruit".',
 ];
 
 // fases bij hun naam. oplevering:true = telt mee tot 1.9-pensioen (31-07).
@@ -176,14 +174,14 @@ const FASES = [
   ]},
   {titel:'Oplevering 1 — CMR · Invoice · Paklijst', sub:'De eerste echte documenten uit één bestand — het eerste evaluatiemoment', oplevering:true, actief:true, onderdelen:[
     {naam:'Invoice (factuur)', status:'testen',
-      gedaan:['Genereert al een PDF; layout en taal verwerkt.','Gedeelde briefpapier-footer (bank/REX/adres), identiek met de paklijst.','Rendert nu getrouw op één A4 (printer-onafhankelijk getest).','Mockup goedgekeurd.'],
-      todo:['De laatste layout-details fijn-afstellen (o.a. footer onderaan, logo-formaat, datumnotatie).','De echte test op Windows + akkoord van de afdeling.']},
+      gedaan:['Genereert al een PDF; layout en taal verwerkt.','Getrouwe render bereikt — wat je op het scherm ziet komt 1-op-1 uit de printer (printer-onafhankelijk).','Layout-polish afgerond: identiek uitgelijnd met de paklijst, marges/logo/footer netjes — klaar om aan de baas te laten zien.','Gedeelde briefpapier-footer (bank/REX/adres), identiek met de paklijst.','Mockup goedgekeurd.'],
+      todo:['De eerste echte test op Windows — uit één echte order.']},
     {naam:'Paklijst', status:'testen',
-      gedaan:['Genereert al; layout bevestigd tegen de goedgekeurde mockup.','Zelfde briefpapier-footer als de factuur.','Rendert nu getrouw op de Mac (printer-onafhankelijk).'],
-      todo:['Dezelfde laatste layout-details fijn-afstellen als de factuur (gedeeld skelet).','De Windows-test + akkoord.']},
-    {naam:'CMR-vrachtbrief — grootste risico', status:'testen',
-      gedaan:['Code gebouwd; genereert end-to-end met echte zending-data.','Het voorbedrukte vakkenraster is geijkt — rendert nu 1:1 op A4 (printer-onafhankelijk).'],
-      todo:['Op het echte voorbedrukte vel printen + de uitlijning bevestigen.']},
+      gedaan:['Genereert al; layout bevestigd tegen de goedgekeurde mockup.','Getrouwe render + identieke positionering als de factuur (zelfde papier-anker).','Layout-polish afgerond (EORI/VAT-blok, kolommen, footer) — boss-ready.','Zelfde briefpapier-footer als de factuur.'],
+      todo:['De Windows-test — uit dezelfde echte order.']},
+    {naam:'CMR-vrachtbrief — grootste risico', status:'aanbouw',
+      gedaan:['Code gebouwd; genereert end-to-end met echte zending-data.'],
+      todo:['Het voorbedrukte vakkenraster + de uitlijning ijken op het echte vel (testprint).']},
     {naam:'CMR — end-to-end test', status:'testen',
       gedaan:['Code klaar.'],
       todo:['Nog nooit volledig op een echte zending getest — eerste keer op Windows.']},
@@ -275,7 +273,7 @@ const MILESTONES = [
 <div class="screen" id="s2">
   <div class="wrap"><div class="card">
     <div class="eye">Voortgang</div>
-    <h1>Hoe ver we al zijn — <span class="ac">op koers naar 31 juli</span>.</h1>
+    <h1>Wat er nog <span class="ac">op stapel</span> staat.</h1>
     <div class="divider"></div>
     <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:8px">Klik een fase open voor de onderdelen — en een onderdeel voor wat er al staat en wat er nog moet. De volgorde volgt gewoon hoe we bouwen: fundament eerst, dan de documenten, dan de rest.</p>
     <div class="legend" id="legend"></div>
