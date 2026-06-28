@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '24 juni 2026';
+const UPDATED = '28 juni 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Invoice en Paklijst zijn nu op Windows bekeken en bevestigd — ze staan zoals het hoort, netjes op één pagina. De CMR-vrachtbrief is volledig herbouwd op het bewezen formulier-raster en meet nu op één pagina; de laatste stap is dat ook de CMR op Windows wordt bevestigd. Tegelijk is de bouwmethode voor zo\'n document vastgelegd als herbruikbaar recept — dat maakt de volgende documenten (zoals de DGD) een stuk sneller. De beslissende test blijft: één echte order erin, alle documenten eruit, en dan het oordeel "ja, dit klopt". Het fundament (de klant- en artikellijsten) draait er bewezen onder.';
+const STATUSNU = 'Invoice en Paklijst zijn op Windows bekeken en bevestigd — netjes op één pagina. De CMR-vrachtbrief is herbouwd op het bewezen formulier-raster en meet op één pagina; de laatste stap is de uitlijning op de printer fijnstellen en op Windows bevestigen. Voor de DGD (gevaarlijke goederen) is een slimme kortere weg genomen: het werkende formulier uit de oude 1.9-versie is rechtstreeks overgezet — dus geen risicovol nabouwen, maar voortbouwen op wat al bewezen klopt. Wat nog volgt is dat formulier voeden vanuit het nieuwe invulblad; de eigenlijke gevaren-data (UN-nummers, klasse) loopt mee met het MSDS-spoor. De beslissende test blijft: één echte order erin, alle documenten eruit, en dan het oordeel "ja, dit klopt". Het fundament (de klant- en artikellijsten) draait er bewezen onder.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -187,7 +187,7 @@ const FASES = [
       todo:['Nog nooit volledig op een echte zending getest — eerste keer op Windows.']},
   ]},
   {titel:'Overige 1.9-documenten', sub:'DGD · Pickup · Stickers · EasyCargo · EXA · Landen · Agenda — hierna kan 1.9 met pensioen', oplevering:true, onderdelen:[
-    {naam:'DGD — gevaarlijke goederen (zeevracht)', status:'testen', gedaan:['Gebouwd op 1.9-niveau.'], todo:['Testen. Marine-Pollutant-data volgt uit MSDS.']},
+    {naam:'DGD — gevaarlijke goederen (zeevracht)', status:'aanbouw', gedaan:['Bewezen formulier + rekenmotor uit 1.9 rechtstreeks overgezet (geen nabouw).'], todo:['Formulier voeden vanuit het nieuwe invulblad (adapter). Gevaren-data (UN/klasse/Marine Pollutant) loopt mee met het MSDS-spoor.']},
     {naam:'Pickup — transport-aanvraag', status:'testen', gedaan:['Gebouwd op 1.9-niveau.'], todo:['Testen. Automatische mail naar de vervoerder komt later.']},
     {naam:'EasyCargo-export', status:'testen', gedaan:['Gebouwd (metrisch laad-planning-bestand).'], todo:['Testen.']},
     {naam:'Stickers', status:'testen', gedaan:['Gebouwd (8 per A4, zoals 1.9).'], todo:['Testen.']},
