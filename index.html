@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '28 juni 2026';
+const UPDATED = '30 juni 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Doorbraak: een technische storing die het werk sessies lang ophield — telkens leek het op een "muur" — bleek één verkeerd geplaatste regel code. Nu dat eruit is, draait het hele pakket weer: uit één schone installatie rollen alle vier de documenten (factuur, paklijst, CMR-vrachtbrief, DGD) er in één keer uit. Invoice en Paklijst waren al bevestigd op één pagina. De CMR staat op het bewezen formulier-raster; laatste stap is de printer-uitlijning op Windows. Voor de DGD (gevaarlijke goederen) leggen we het formulier nu exact naast de werkende 1.9-versie: een paar velden landden nog op de verkeerde plek, dat trekken we de volgende stap recht — geen nabouwen, maar precies kopiëren wat al klopt. De gevaren-data zelf (UN-nummers, klasse) loopt mee met het MSDS-spoor. De beslissende test blijft onveranderd: één echte order erin, alle documenten eruit, en dan het oordeel "ja, dit klopt" — op Windows. Het fundament (klant- en artikellijsten) draait er bewezen onder.';
+const STATUSNU = 'Grote zichtbare stap: het invoerscherm — het invulblad waar de hele zending in één overzicht wordt ingevuld — is nu ingericht én gevuld met voorbeeldgegevens. Een kopbalk per zending (klant links, zending-details in het midden, dossiernaam + behandelaar rechts), de juiste kolommen op de juiste breedte, en de automatische koppeling die klant- en artikelgegevens ophaalt en invult. Vanuit dat ingevulde scherm rollen de documenten: factuur en paklijst staan bevestigd op één pagina, de CMR op het bewezen formulier-raster (laatste stap = printer-uitlijning op Windows). De DGD (gevaarlijke goederen) leggen we nog exact naast de werkende 1.9-versie — een paar velden landen nog op de verkeerde plek, dat trekken we recht door precies te kopiëren wat al klopt; de gevaren-data loopt mee met het MSDS-spoor. Nog één punt op de werklijst: het bruto-gewicht (een tara-tabel per verpakkingstype). De beslissende test blijft onveranderd en is nog niet gegeven: één echte order erin, alle documenten eruit, en dan op Windows het oordeel "ja, dit klopt". Het fundament (klant- en artikellijsten) draait er bewezen onder.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -166,7 +166,7 @@ const FASES = [
       gedaan:['De lookup-mechaniek is gebouwd.'],
       todo:['De koppeling naar de echte lijsten op het werknet aanzetten (nu nog testpaden).']},
     {naam:'Invulblad — het invoerscherm', status:'aanbouw',
-      gedaan:['Gebouwd en op de Mac getest; mockup goedgekeurd.','Co-load-tabel + kleurconventie + artikelvolgorde staan.'],
+      gedaan:['Ingericht én gevuld met voorbeeldgegevens: kopbalk per zending (3 zones), de juiste kolommen op de juiste breedte, en de automatische klant- + artikel-koppeling die de velden invult.','Co-load-tabel + kleurconventie + artikelvolgorde staan.'],
       todo:['Tab-volgorde finaliseren met een echte invuloefening.','Conditionele velden: alléén tonen wat relevant is — DG-kolommen bij gevaarlijke stoffen, zee-velden bij zeevracht. (Kern-kenmerk van 4.0.)','Nóg simpeler / hufterproof maken — de leek-test: een leek vult blind in en levert een correct document.']},
     {naam:'Bedrijfsgegevens', status:'aanbouw',
       gedaan:['Bedrijfsgegevens + resolver werken (smoke-test geslaagd).'],
