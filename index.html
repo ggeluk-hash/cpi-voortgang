@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '30 juni 2026';
+const UPDATED = '1 juli 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -166,8 +166,8 @@ const FASES = [
       gedaan:['De lookup-mechaniek is gebouwd.'],
       todo:['De koppeling naar de echte lijsten op het werknet aanzetten (nu nog testpaden).']},
     {naam:'Invulblad — het invoerscherm', status:'aanbouw',
-      gedaan:['Ingericht én gevuld met voorbeeldgegevens: kopbalk per zending (3 zones), de juiste kolommen op de juiste breedte, en de automatische klant- + artikel-koppeling die de velden invult.','Co-load-tabel + kleurconventie + artikelvolgorde staan.'],
-      todo:['Tab-volgorde finaliseren met een echte invuloefening.','Conditionele velden: alléén tonen wat relevant is — DG-kolommen bij gevaarlijke stoffen, zee-velden bij zeevracht. (Kern-kenmerk van 4.0.)','Nóg simpeler / hufterproof maken — de leek-test: een leek vult blind in en levert een correct document.']},
+      gedaan:['Ingericht én gevuld met voorbeeldgegevens: kopbalk per zending (3 zones), de juiste kolommen op de juiste breedte, en de automatische klant- + artikel-koppeling die de velden invult.','Co-load-tabel + kleurconventie + artikelvolgorde staan.','Opgeschoond naar één schoon invoerscherm (twee oude versies liepen door elkaar — nu opgeruimd).','De transport-varianten zee / lucht / koerier zitten nu in het scherm én stromen door naar de paklijst (schakel je de modaliteit, dan verschijnen de juiste velden). Code klaar; de test op Windows volgt.'],
+      todo:['Op Windows testen dat het opgeschoonde scherm alle documenten correct voedt.','Tab-volgorde finaliseren met een echte invuloefening.','Een paar kop-velden (o.a. EORI, ordernummer, leverdatum) nog een zichtbare invulplek geven.','Nóg simpeler / hufterproof maken — de leek-test: een leek vult blind in en levert een correct document.']},
     {naam:'Bedrijfsgegevens', status:'aanbouw',
       gedaan:['Bedrijfsgegevens + resolver werken (smoke-test geslaagd).'],
       todo:['Tenantdata 100% vullen (bank, paden, CMR-formulier-gegevens).']},
