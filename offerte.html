@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Offerte-module — Voortgang · Benfried B.V.</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#005EB8;--green:#009A44;--dark:#27251F;--bg:#ECEEF1;--white:#FFF;
+  --orange:#E8612C;--gold:#B7860B;--muted:#8a909a;
+  --shadow:0 8px 40px rgba(0,94,184,.10),0 2px 8px rgba(0,0,0,.05);
+  --r:22px;--font:"Dax Pro",Calibri,"Trebuchet MS",sans-serif;
+}
+html,body{font-family:var(--font);background:var(--bg);color:var(--dark);min-height:100%}
+.screen{display:none;min-height:100vh;padding:40px 18px 60px;justify-content:center}
+.screen.active{display:flex}
+.wrap{width:100%;max-width:780px}
+.card{background:var(--white);border-radius:var(--r);box-shadow:var(--shadow);padding:30px 34px}
+.eye{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-bottom:6px}
+.ac{color:var(--blue)}
+.divider{width:46px;height:4px;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;margin:12px 0 18px}
+.datum{font-size:12px;color:var(--muted);font-weight:600}
+.tagline{font-size:15px;font-weight:700;color:var(--blue);margin:8px 0 4px;letter-spacing:.2px}
+.subline{font-size:12.5px;color:#6B7280;line-height:1.5;margin-bottom:6px}
+.compmini{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:#2f4156;line-height:1.45;background:rgba(0,94,184,.05);border:1px solid rgba(0,94,184,.18);border-radius:10px;padding:9px 13px;margin:6px 0 4px}
+.livelink{font-size:10.5px;color:#9aa0a8;text-align:center;margin-top:8px;word-break:break-all}
+.livelink a{color:var(--blue);text-decoration:none}
+.statusnu{background:var(--bg);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:13px 18px;font-size:13.5px;line-height:1.55;color:#333;margin:14px 0 4px}
+.statusnu b{color:var(--blue)}
+/* tijdlijn-balk */
+.tl{position:relative;margin:18px 4px 14px}
+.tl-cap{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px}
+.tl-cap .t{font-size:13.5px;font-weight:700}
+.tl-cap .p{font-size:20px;font-weight:700;color:var(--blue)}
+.tl-track{position:relative;height:15px;border-radius:8px;background:#E4E8EE;margin-bottom:52px}
+.tl-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--blue),var(--green));transition:width 1s cubic-bezier(.4,0,.2,1)}
+.tl-here{position:absolute;bottom:100%;margin-bottom:6px;white-space:nowrap;text-align:center}
+.tl-here .lbl{font-size:10px;font-weight:700;color:var(--blue)}
+.tl-here .pin{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--blue);margin:2px auto 0}
+.tl-mark{position:absolute;top:0;height:15px;width:2px;background:#fff;opacity:.9}
+.tl-mlbl{position:absolute;top:100%;font-size:9.5px;font-weight:600;color:var(--muted);white-space:nowrap;line-height:1.3}
+.tl-mlbl.doel{color:var(--orange);font-weight:700}
+.tl-na{font-size:10.5px;color:var(--muted);text-align:right;font-style:italic}
+/* mini-balken */
+.mini-h{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:14px 0 7px}
+.pbar{margin:9px 0}
+.pbar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.pbar-lbl{font-size:12.5px;font-weight:600}
+.pbar-pct{font-size:13px;font-weight:700;color:var(--blue)}
+.track{height:9px;border-radius:5px;background:#E4E8EE;overflow:hidden}
+.track>div{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .9s}
+.pbar.msds .pbar-pct{color:var(--green)}
+.pbar.msds .track>div{background:linear-gradient(90deg,#00B850,var(--green))}
+/* uitdaging */
+.uitdaging{border:1.5px solid var(--blue);background:#EFF5FF;border-radius:14px;padding:14px 18px;margin:22px 0 18px}
+.uitdaging .t{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.uitdaging .d{font-size:13px;color:#1c3d5e;line-height:1.6}
+/* afgevinkt */
+.gedaan{background:rgba(0,154,68,.06);border:1px solid rgba(0,154,68,.3);border-radius:14px;padding:13px 18px;margin-bottom:16px}
+.gedaan-t{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+.gedaan ul{list-style:none}
+.gedaan li{font-size:12.5px;color:#33502f;line-height:1.5;padding:3px 0 3px 22px;position:relative}
+.gedaan li::before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:13px 28px;font-size:14px;font-weight:700;font-family:var(--font);border:none;border-radius:50px;cursor:pointer;background:linear-gradient(135deg,var(--blue),#0074DC);color:#fff;box-shadow:0 4px 16px rgba(0,94,184,.28);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:none;color:var(--muted);box-shadow:none;padding:10px 6px}
+.disclaimer{font-size:10.5px;color:#aab0b8;font-style:italic;line-height:1.5;margin-top:18px;text-align:center}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;border-radius:20px;padding:4px 10px;white-space:nowrap}
+.st-uitgedacht{background:#EFF5FF;color:var(--blue)}
+.st-aanbouw{background:#FDF2E6;color:var(--orange)}
+.st-testen{background:#FFF8E1;color:var(--gold)}
+.st-klaar{background:#E8F5EE;color:var(--green)}
+/* scherm 2 fases */
+.sectie-h{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.compliance{border:1.5px solid var(--blue);border-radius:16px;background:linear-gradient(135deg,rgba(0,94,184,.06),rgba(0,154,68,.05));padding:14px 18px;margin:14px 0 4px}
+.compliance-h{font-size:13px;font-weight:700;color:var(--blue)}
+.compliance-lead{font-size:11.5px;color:#5a6b82;font-style:italic;margin-top:3px}
+.compliance ul{list-style:none;margin-top:8px}
+.compliance li{font-size:12px;color:#2f4156;line-height:1.5;padding:4px 0 4px 22px;position:relative}
+.compliance li::before{content:"·";position:absolute;left:2px;color:var(--blue);font-weight:700}
+.compliance li b{color:var(--blue)}
+.fase{border:1.5px solid #E2E7EE;border-radius:16px;background:#fff;margin-bottom:11px;overflow:hidden}
+.fase.actief{border-color:var(--blue);box-shadow:0 4px 18px rgba(0,94,184,.12)}
+.fase.parallel{border-color:var(--green);background:rgba(0,154,68,.04)}
+.fase-head{display:flex;align-items:center;gap:13px;padding:14px 18px;cursor:pointer;user-select:none}
+.fase-head:hover{background:#FAFBFC}
+.fase.parallel .fase-head:hover{background:rgba(0,154,68,.06)}
+.fase-no{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--bg);color:var(--blue);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.fase.actief .fase-no{background:var(--blue);color:#fff}
+.fase.parallel .fase-no{background:var(--green);color:#fff}
+.fase-mid{flex:1;min-width:0}
+.fase-titel{font-size:14.5px;font-weight:700}
+.fase-titel .nu{font-size:9.5px;font-weight:700;color:#fff;background:var(--blue);border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle}
+.fase-sub{font-size:11.5px;color:var(--muted);margin-top:1px}
+.fase-pct{flex-shrink:0;font-size:15px;font-weight:700;color:var(--blue)}
+.fase.parallel .fase-pct{color:var(--green)}
+.chev{flex-shrink:0;color:#bbb;transition:transform .3s;font-size:14px}
+.fase.open .chev{transform:rotate(90deg)}
+.minibar{height:6px;border-radius:4px;background:#EDF0F4;margin:0 18px 12px;overflow:hidden}
+.minibar>div{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.fase.parallel .minibar>div{background:linear-gradient(90deg,#00B850,var(--green))}
+.fase-body{display:none;padding:0 18px 14px}
+.fase.open .fase-body{display:block}
+.ond{border-top:1px solid #F0F2F5;padding:9px 0}
+.ond-head{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.ond-head:hover .ond-naam{color:var(--blue)}
+.ond-naam{flex:1;font-size:13px;font-weight:600;line-height:1.4}
+.ond-chev{flex-shrink:0;color:#ccc;font-size:11px;transition:transform .3s;margin-top:2px}
+.ond.open .ond-chev{transform:rotate(90deg)}
+.ond-body{display:none;margin:7px 0 2px;padding:9px 13px;background:#F7F9FB;border-radius:8px}
+.ond.open .ond-body{display:block}
+.ond-body ul{list-style:none;margin:0}
+.ond-body li{font-size:11.5px;line-height:1.55;padding:3px 0 3px 18px;position:relative}
+.li-done{color:#33502f}
+.li-done::before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:700}
+.li-todo{color:#555}
+.li-todo::before{content:"→";position:absolute;left:2px;color:var(--blue);font-weight:700}
+.horizon{border:1.5px dashed #B6C0CC;border-radius:14px;background:repeating-linear-gradient(135deg,#fff,#fff 9px,#F6F8FA 9px,#F6F8FA 18px);padding:13px 18px;margin:6px 0 4px;font-size:12px;color:#6b7280;line-height:1.55}
+.horizon b{color:#5b6470}
+.bijvangst{border:1.5px solid #E2E7EE;border-radius:16px;background:#fff;padding:14px 18px;margin-top:6px}
+.bijvangst .s{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.bijvangst ul{list-style:none}
+.bijvangst li{font-size:12px;color:#444;line-height:1.55;padding:6px 0 6px 22px;position:relative;border-top:1px solid #F2F4F7}
+.bijvangst li:first-child{border-top:none}
+.bijvangst li::before{content:"·";position:absolute;left:2px;color:var(--gold);font-weight:700}
+.voetnoot{font-size:11px;color:var(--muted);line-height:1.55;margin-top:16px;padding-left:14px;border-left:3px solid #D0D8E4}
+@media print{.btn{display:none}.fase-body,.ond-body{display:block!important}}
+</style>
+</head>
+<body>
+<!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
+     Status uit OFFERTE-project (OPEN.md/BESLUITEN.md — echte bouw-staat). ══ -->
+<script>
+const UPDATED = '10 juli 2026';
+// tagline — creatieve werkversie (vrij te wisselen).
+const TAGLINE = 'Offerte-module — van calculatie tot compleet offerte-systeem';
+const SUBLINE = 'Van los rekenblaadje naar één herbruikbaar systeem — voor elke offerte dezelfde weg.';
+const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/offerte.html';
+const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
+const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
+
+const STATUSNU = 'Bestand structureel af aan de binnenkant (opschoning + tabel-herbouw klaar en geverifieerd); volgende: de nieuwe kop-indeling + live gegevens.';
+
+const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil de offerte-module op échte, live gegevens laten draaien — vanaf de nieuwe kop-indeling tot de eerste offerte die er ook zo echt uitgaat. Ik kan nu nog niet inschatten of dat haalbaar is binnen de huidige IT-afhankelijkheden (de gedeelde map moet nog geïnventariseerd worden) — maar ik wil het zichtbaar maken en hier bijhouden.';
+
+const DISCLAIMER = 'De percentages zijn een indicatie van de voortgang — in het verleden behaalde resultaten bieden geen garantie voor de toekomst.';
+
+const GEDAAN = [
+  'Werkende offerte-generator staat: invullen → berekening → PDF-knop → register.',
+  'Invulblad schoongemaakt — hulpdata verhuisd naar een verborgen tab.',
+  'Inkoopgegevens geclusterd in plaats van verspreid over het bestand.',
+  'Verdeel-engine bewezen — de kern-rekenlogica werkt.',
+];
+
+// fases bij hun naam. oplevering:true = telt mee tot de eerste werkende versie op live gegevens.
+const FASES = [
+  {titel:'Fundament (klaar)', sub:'De basis: generator, invulblad en verdeel-engine', oplevering:true, onderdelen:[
+    {naam:'Offerte-generator', status:'klaar',
+      gedaan:['Werkt end-to-end: invullen → berekening → PDF-knop → register.'],
+      todo:[]},
+    {naam:'Clean invulblad', status:'klaar',
+      gedaan:['Hulpdata verhuisd naar een verborgen tab — het invulblad zelf is opgeschoond.'],
+      todo:[]},
+    {naam:'Inkoopgegevens geclusterd', status:'klaar',
+      gedaan:['Inkoopgegevens bij elkaar gezet in plaats van verspreid door het bestand.'],
+      todo:[]},
+    {naam:'Verdeel-engine', status:'klaar',
+      gedaan:['De verdeel-logica is bewezen.'],
+      todo:[]},
+  ]},
+  {titel:'Werkend op échte gegevens', sub:'De stap naar live — dit is waar het nu om draait', oplevering:true, actief:true, onderdelen:[
+    {naam:'Nieuwe kop-indeling (eigen ontwerp)', status:'aanbouw',
+      gedaan:['Ontwerp staat.'],
+      todo:['Implementeren in het werkbestand.']},
+    {naam:'Conditionele velden (transport/valuta/incoterm)', status:'uitgedacht',
+      gedaan:[],
+      todo:['Vastleggen welke velden per scenario relevant zijn — alleen tonen wat nodig is.']},
+    {naam:'Minimale-marge-signaal', status:'uitgedacht',
+      gedaan:[],
+      todo:['Signaleringslogica uitwerken (geen harde blokkade, wel een waarschuwing).']},
+    {naam:'Koppeling live masters op kantoor', status:'aanbouw',
+      gedaan:['Koppelmechaniek staat.'],
+      todo:['Aanzetten op de échte, live gegevens op kantoor.']},
+    {naam:'Eerste echte offerte', status:'uitgedacht',
+      gedaan:[],
+      todo:['Eén echte offerte volledig doorlopen als test — het eerste evaluatiemoment.']},
+  ]},
+  {titel:'Register + terugkoppeling', sub:'Zicht op wat er met een offerte gebeurt', oplevering:false, onderdelen:[
+    {naam:'Statusbewaking per offerte (open/akkoord/afgewezen)', status:'uitgedacht', gedaan:[], todo:['Statusvlag per offerte vastleggen in het register.']},
+    {naam:'Verloop-reminder', status:'uitgedacht', gedaan:[], todo:['Automatische herinnering bij aflopende offertes.']},
+    {naam:'Dashboard-KPI\'s', status:'uitgedacht', gedaan:[], todo:['Wacht op input leidinggevende — welke KPI\'s zijn relevant.']},
+  ]},
+  {titel:'Kosten-tabel', sub:'Eén duidelijke plek voor de kosten-opbouw', oplevering:false, onderdelen:[
+    {naam:'Kosten-invoertabel per leverancier', status:'uitgedacht', gedaan:[], todo:['Eén invoertabel per leverancier opzetten.']},
+    {naam:'Verdeelsleutels', status:'uitgedacht', gedaan:[], todo:['Verdeelsleutels vastleggen en koppelen aan de tabel.']},
+    {naam:'Vaste opslagregels', status:'uitgedacht', gedaan:[], todo:['Vaste opslagregels vastleggen.']},
+    {naam:'Verzekering apart zichtbaar', status:'uitgedacht', gedaan:[], todo:['Verzekering als apart, zichtbaar onderdeel opnemen.']},
+  ]},
+  {titel:'Mails vanuit de offerte', sub:'Rechtstreeks vanuit het bestand communiceren', oplevering:false, onderdelen:[
+    {naam:'Transportaanvraag logistiek', status:'klaar', gedaan:['Compleet.'], todo:[]},
+    {naam:'Leveranciers-mail in eigen taal', status:'uitgedacht', gedaan:[], todo:['Mail met eigen artikelnummers, in de taal van de leverancier.']},
+  ]},
+  {titel:'Zoek- & referentielaag', sub:'Eerder werk terugvinden en hergebruiken', oplevering:false, onderdelen:[
+    {naam:'Historie-zoekfunctie', status:'uitgedacht', gedaan:[], todo:['Zoeken: verkocht → geofferd → vergelijkbaar.']},
+    {naam:'Zoeken in klanttaal', status:'uitgedacht', gedaan:[], todo:['Zoekfunctie werkt ook op klanttaal, niet alleen interne termen.']},
+    {naam:'Productgroep-filter', status:'uitgedacht', gedaan:[], todo:['Filter op productgroep toevoegen.']},
+  ]},
+  {titel:'Nacalculatie', sub:'Visie — nog geen bouwstap', oplevering:false, onderdelen:[
+    {naam:'Order doorrekenen op werkelijke kosten en doorlooptijd', status:'uitgedacht', gedaan:[], todo:['Visie uitwerken tot een concrete bouwstap.']},
+  ]},
+];
+
+const MSDS = {titel:'Gedeelde map (IT)', sub:'Eigen spoor · loopt parallel · voorwaarde voor de live koppeling', parallel:true, onderdelen:[
+  {naam:'IT-inventarisatie gedeelde map', status:'aanbouw', gedaan:['Aanvraag bij IT loopt.'], todo:['Inventarisatie afwachten — voorwaarde voordat de live koppeling (fase 1) verder kan.']},
+]};
+
+const COMPLIANCE = {titel:'Kwaliteit & controle — loopt door de hele offerte heen', lead:'Geen los rekenwerk meer — de controle zit ingebouwd in het bestand zelf.', punten:[
+  ['Ingebouwd, niet achteraf.', 'de minimale-marge-signalering en conditionele velden zitten in het invulblad zelf, niet in een los controle-stapje.'],
+  ['Eén bron voor inkoopgegevens.', 'geclusterde inkoopgegevens voorkomen dat dezelfde data op meerdere plekken losstaat.'],
+  ['Register als geheugen.', 'elke offerte komt automatisch in het register — niets raakt kwijt.'],
+]};
+
+const HORIZON = 'Buiten deze module (eigen visie): koppeling met het CRM / een offerte-portal voor herhaalaanvragen. Niet ingepland — de visie, geen volgende bouwstap.';
+
+const BIJVANGST = {sub:'Inzichten die naar voren kwamen tijdens het werken aan dit project', items:[
+  'Dezelfde aanpak als CPI werkt ook hier: zelfde invoer → zelfde output, minder afhankelijk van wie het invult.',
+  'Het invulblad opschonen maakte in één keer zichtbaar waar de rekenlogica eigenlijk stond.',
+  'De afhankelijkheid van een IT-inventarisatie voor de gedeelde map werd pas zichtbaar toen de live koppeling aan de orde kwam — nu apart op de rails gezet.',
+]};
+
+const VOETNOOT = 'Eigen projecten, los van de offerte-module (niet in deze balken): CPI 4.0 · Transport-planning · KAM (key accounts) · PrijsBeheer · MSDS.';
+
+// mijlpalen op de tijdlijn-balk (pos = fractie 0-1 van de weg naar de eerste werkende versie op live gegevens)
+const MILESTONES = [
+  {label:'Live gegevens gekoppeld', pos:0.7},
+  {label:'Eerste echte offerte', pos:1.0, doel:true},
+];
+</script>
+<!-- ══ EINDE DATABLOK ══ -->
+
+<!-- SCHERM 1 -->
+<div class="screen active" id="s1">
+  <div class="wrap"><div class="card">
+    <div class="eye">Bint · Benfried International — offertes</div>
+    <h1>Offerte-module — <span class="ac">waar staan we</span>?</h1>
+    <div class="tagline" id="tagline"></div>
+    <div class="subline" id="subline"></div>
+    <div class="divider"></div>
+    <div class="datum" id="datum"></div>
+    <div class="statusnu" id="statusnu"></div>
+    <div class="tl" id="tl"></div>
+    <div id="minibars"></div>
+    <div class="compmini" id="compmini"></div>
+    <div class="uitdaging"><div class="t">De uitdaging die ik mezelf stel</div><div class="d" id="uitdaging"></div></div>
+    <div class="gedaan"><div class="gedaan-t">Dit staat al — geen beloftes</div><ul id="gedaan"></ul></div>
+    <button class="btn" onclick="go(2)">De stappen bekijken →</button>
+    <div class="disclaimer" id="disc1"></div>
+    <div class="livelink" id="live1"></div>
+  </div></div>
+</div>
+
+<!-- SCHERM 2 -->
+<div class="screen" id="s2">
+  <div class="wrap"><div class="card">
+    <div class="eye">Voortgang</div>
+    <h1>Wat er nog <span class="ac">op stapel</span> staat.</h1>
+    <div class="divider"></div>
+    <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:8px">Klik een fase open voor de onderdelen — en een onderdeel voor wat er al staat en wat er nog moet. De volgorde volgt gewoon hoe we bouwen: fundament eerst, dan live gegevens, dan de rest.</p>
+    <div class="legend" id="legend"></div>
+    <div class="compliance" id="compliance"></div>
+    <div class="sectie-h">Tot de eerste werkende versie op live gegevens</div>
+    <div id="opl-list"></div>
+    <div class="sectie-h">Daarna — verrijken & slimmer</div>
+    <div id="daarna-list"></div>
+    <div class="horizon" id="horizon"></div>
+    <div class="sectie-h">Parallel spoor</div>
+    <div id="msds"></div>
+    <div class="sectie-h">Bijvangst van dit project</div>
+    <div class="bijvangst" id="bijvangst"></div>
+    <div class="voetnoot" id="voetnoot"></div>
+    <div class="disclaimer" id="disc2"></div>
+    <div class="livelink" id="live2"></div>
+    <button class="btn ghost" onclick="go(1)">← terug naar het overzicht</button>
+  </div></div>
+</div>
+
+<script>
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const pctArr = arr => arr.length ? Math.round(arr.reduce((s,o)=>s+(MAP[o.status]||0),0)/arr.length*100) : 0;
+const faseP = f => pctArr(f.onderdelen);
+const opleveringFases = FASES.filter(f=>f.oplevering);
+const daarnaFases = FASES.filter(f=>!f.oplevering);
+const totaal = pctArr(opleveringFases.flatMap(f=>f.onderdelen));
+const msdsP = pctArr(MSDS.onderdelen);
+const lopend = FASES.find(f=>f.actief);
+
+/* ── scherm 1 ── */
+document.getElementById('datum').textContent = 'Laatst bijgewerkt: '+UPDATED;
+document.getElementById('statusnu').innerHTML = '<b>Nu:</b> '+esc(STATUSNU);
+document.getElementById('uitdaging').textContent = UITDAGING;
+document.getElementById('gedaan').innerHTML = GEDAAN.map(g=>`<li>${esc(g)}</li>`).join('');
+document.getElementById('disc1').textContent = DISCLAIMER;
+document.getElementById('disc2').textContent = DISCLAIMER;
+document.getElementById('tagline').textContent = TAGLINE;
+document.getElementById('subline').textContent = SUBLINE;
+document.getElementById('compmini').innerHTML = '<span><b>Kwaliteit &amp; controle</b> lopen door álle fases heen — ingebouwd, en per onderdeel getoetst. Detail op het volgende scherm.</span>';
+const liveHTML = `Live &amp; deelbaar: <a href="${LIVELINK}">${LIVELINK.replace('https://','')}</a> · laatst bijgewerkt ${UPDATED}`;
+document.getElementById('live1').innerHTML = liveHTML;
+document.getElementById('live2').innerHTML = liveHTML;
+
+// tijdlijn-balk — markers + labels zijn kinderen van de track; transform houdt ze binnen de rand
+const edgeTx = f => f>=0.88 ? '-92%' : f<=0.12 ? '-8%' : '-50%';
+let tl = `<div class="tl-cap"><div class="t">Offerte-module — werkbestand</div><div class="p">${totaal}%</div></div>
+  <div class="tl-track"><div class="tl-fill" style="width:${totaal}%"></div>`;
+MILESTONES.forEach((m,i)=>{ const L=Math.round(m.pos*100); const top = (i%2===0)?9:27;
+  tl += `<div class="tl-mark" style="left:${L}%"></div>`;
+  tl += `<div class="tl-mlbl ${m.doel?'doel':''}" style="left:${L}%;margin-top:${top}px;transform:translateX(${edgeTx(m.pos)})">${esc(m.label)}</div>`; });
+tl += `<div class="tl-here" style="left:${totaal}%;transform:translateX(${edgeTx(totaal/100)})"><div class="lbl">je bent hier · ${totaal}%</div><div class="pin"></div></div>`;
+tl += `</div><div class="tl-na">→ daarna: Register &amp; terugkoppeling → Kosten-tabel → Mails → Zoek- &amp; referentielaag → Nacalculatie</div>`;
+document.getElementById('tl').innerHTML = tl;
+
+// mini-balken
+function miniBar(lbl,p,cls){return `<div class="pbar ${cls||''}"><div class="pbar-top"><div class="pbar-lbl">${esc(lbl)}</div><div class="pbar-pct">${p}%</div></div><div class="track"><div style="width:${p}%"></div></div></div>`;}
+let mb = `<div class="mini-h">Nu</div>`;
+opleveringFases.forEach(f=> mb += miniBar(f.titel, faseP(f)));
+mb += `<div class="mini-h">Daarna</div>`;
+daarnaFases.forEach(f=> mb += miniBar(f.titel, faseP(f)));
+mb += `<div class="mini-h">Parallel</div>` + miniBar('Gedeelde map (IT)', msdsP, 'msds');
+document.getElementById('minibars').innerHTML = mb;
+
+/* ── scherm 2 ── */
+document.getElementById('legend').innerHTML = ['klaar','testen','aanbouw','uitgedacht'].map(s=>`<span class="pill st-${s}">${STLABEL[s]}</span>`).join('');
+document.getElementById('compliance').innerHTML = `<div class="compliance-h">${esc(COMPLIANCE.titel)}</div><div class="compliance-lead">${esc(COMPLIANCE.lead)}</div><ul>${COMPLIANCE.punten.map(p=>`<li><b>${esc(p[0])}</b> ${esc(p[1])}</li>`).join('')}</ul>`;
+
+let UID = 0;
+function faseHTML(f){
+  const id = 'f'+(UID++);
+  const p = faseP(f);
+  const cls = f.parallel ? 'parallel' : (f.actief ? 'actief' : '');
+  const ond = f.onderdelen.map((o,j)=>{
+    const oid = id+'_'+j;
+    const done = (o.gedaan||[]).map(x=>`<li class="li-done">${esc(x)}</li>`).join('');
+    const todo = (o.todo||[]).map(x=>`<li class="li-todo">${esc(x)}</li>`).join('');
+    return `<div class="ond" id="${oid}">
+      <div class="ond-head" onclick="document.getElementById('${oid}').classList.toggle('open');event.stopPropagation()">
+        <span class="pill st-${o.status}">${STLABEL[o.status]}</span>
+        <span class="ond-naam">${esc(o.naam)}</span><span class="ond-chev">▶</span>
+      </div>
+      <div class="ond-body"><ul>${done}${todo}</ul></div>
+    </div>`;
+  }).join('');
+  const badge = f.parallel ? 'M' : (FASES.indexOf(f)+1);
+  return `<div class="fase ${cls}" id="${id}">
+    <div class="fase-head" onclick="document.getElementById('${id}').classList.toggle('open')">
+      <div class="fase-no">${badge}</div>
+      <div class="fase-mid"><div class="fase-titel">${esc(f.titel)}${f.actief?'<span class="nu">je bent hier</span>':''}</div><div class="fase-sub">${esc(f.sub)}</div></div>
+      <div class="fase-pct">${p}%</div><div class="chev">▶</div>
+    </div>
+    <div class="minibar"><div style="width:${p}%"></div></div>
+    <div class="fase-body">${ond}</div>
+  </div>`;
+}
+document.getElementById('opl-list').innerHTML = opleveringFases.map(faseHTML).join('');
+document.getElementById('daarna-list').innerHTML = daarnaFases.map(faseHTML).join('');
+document.getElementById('horizon').innerHTML = '<b>Horizon —</b> '+esc(HORIZON);
+document.getElementById('msds').innerHTML = faseHTML(MSDS);
+document.getElementById('bijvangst').innerHTML = `<div class="s">${esc(BIJVANGST.sub)}</div><ul>${BIJVANGST.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+document.getElementById('voetnoot').textContent = VOETNOOT;
+
+/* nav + standaard de actieve fase open */
+function go(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('s'+n).classList.add('active');window.scrollTo(0,0);}
+const aIdx = opleveringFases.findIndex(f=>f.actief);
+if(aIdx>=0){const els=document.querySelectorAll('#opl-list .fase');if(els[aIdx])els[aIdx].classList.add('open');}
+</script>
+</body>
+</html>
