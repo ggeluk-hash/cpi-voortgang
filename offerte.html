@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit OFFERTE-project (OPEN.md/BESLUITEN.md — echte bouw-staat). ══ -->
 <script>
-const UPDATED = '12 juli 2026';
+const UPDATED = '15 juli 2026';
 // tagline — creatieve werkversie (vrij te wisselen).
 const TAGLINE = 'Offerte-module — van calculatie tot compleet offerte-systeem';
 const SUBLINE = 'Van los rekenblaadje naar één herbruikbaar systeem — voor elke offerte dezelfde weg.';
@@ -142,13 +142,16 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/offerte.html';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'De nieuwe kop-indeling staat: alle blokken herbouwd in eigen ontwerp, per blok beoordeeld en geverifieerd; volgende: laatste verfijning van de kop, daarna live gegevens.';
+const STATUSNU = 'Het blad kent nu twee schakelbare standen (invullen vs. alles-open), per artikelregel kan een bijschrijving mee die netjes onder het artikel op de offerte-PDF landt, en twee kopfouten op de offerte zijn hersteld; volgende: de kop definitief loskoppelen van de kolommen (één geheel bovenin), daarna signalen voor gevaargoed/oorsprongseisen en live gegevens.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil de offerte-module op échte, live gegevens laten draaien — vanaf de nieuwe kop-indeling tot de eerste offerte die er ook zo echt uitgaat. Ik kan nu nog niet inschatten of dat haalbaar is binnen de huidige IT-afhankelijkheden (de gedeelde map moet nog geïnventariseerd worden) — maar ik wil het zichtbaar maken en hier bijhouden.';
 
 const DISCLAIMER = 'De percentages zijn een indicatie van de voortgang — in het verleden behaalde resultaten bieden geen garantie voor de toekomst.';
 
 const GEDAAN = [
+  'Schakelbare standen via een keuzelijstje: rustig invulbeeld of alles-open — uitbreidbaar zonder herbouw.',
+  'Bijschrijving per artikelregel — verschijnt als eigen regel onder het artikel op de offerte-PDF.',
+  'Offerte-kop nagemeten: betaaltermijn en referentie toonden verkeerde gegevens — hersteld en bewezen op de PDF.',
   'Nieuwe kop-indeling volledig herbouwd in eigen ontwerp — per blok beoordeeld en geverifieerd.',
   'Werkende offerte-generator staat: invullen → berekening → PDF-knop → register.',
   'Invulblad schoongemaakt — hulpdata verhuisd naar een verborgen tab.',
