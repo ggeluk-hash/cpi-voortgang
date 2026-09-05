@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Op 5 september zijn thuis de factuur (blok 1) en de paklijst (blok 2) gebouwd en op testdata bewezen in werkbestand v51: de paklijst valt nu exact over de factuur, zonder lege regels, met de gevarengoederen tweetalig en een co-load-blok. De echte toets is de kantoorprint van order 1 op maandag 7 september; daarna volgen de vrachtbrief (blok 3) en de gevaarlijke-stoffenverklaring (blok 4). Niets telt als klaar tot het op kantoor op papier is goedgekeurd.';
+const STATUSNU = 'Op 5 september zijn thuis de factuur (blok 1), de paklijst (blok 2) en de CMR-vrachtbrief (blok 3) gebouwd en op testdata getest in werkbestand v52. De paklijst valt exact over de factuur; op de CMR is de oorzaak van de fout van 4 september gevonden en weggenomen (een wisregel raakte een tekstvak bij de printer-instelling), bijlading (co-load) staat als één regel met totalen gelijk aan de paklijst, datum en gevarentekst kloppen. Alles is thuis machinaal in orde; bewezen wordt het pas op het voorgedrukte vel. Maandag 7 september op kantoor: order 1, drie knoppen (factuur, paklijst, CMR), print, foto, drie kaarten ja/nee. Daarna de gevaarlijke-stoffen-declaratie (blok 4) en eerst inventariseren wat de rest nog vraagt.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -180,8 +180,8 @@ const FASES = [
       gedaan:['Op Windows bevestigd: staat netjes op één pagina.','Genereert al; layout bevestigd tegen de goedgekeurde mockup.','Getrouwe render + identieke positionering als de factuur (zelfde papier-anker).','Layout-polish afgerond (EORI/VAT-blok, kolommen, footer) — boss-ready.','Zelfde briefpapier-footer als de factuur.'],
       todo:['De Windows-test — uit dezelfde echte order.']},
     {naam:'CMR-vrachtbrief — grootste risico', status:'testen',
-      gedaan:['1 september: print in één keer goed op het voorgedrukte vel op de kantoorprinter — alle vakken raak, één pagina, geen speciale instellingen (acht gemeten proefprints; akkoord op de eindprint).','Verpakkingswijze (DS), totaalregel, decimalen en kolomposities in dezelfde ronde opgelost.'],
-      todo:['De bewezen instellingen verankeren in het echte werkbestand (v39) + dubbele controleprint als acceptatie — dan pas heet dit af.']},
+      gedaan:['5 sep (thuis): oorzaak van de kantoorfout van 4 sep gevonden en weggenomen; bijlading (co-load) als één regel, totalen gelijk aan de paklijst; datum en gevarentekst gefixt; werkbestand v52.','1 september: print in één keer goed op het voorgedrukte vel op de kantoorprinter — alle vakken raak, één pagina, geen speciale instellingen (acht gemeten proefprints; akkoord op de eindprint).','Verpakkingswijze (DS), totaalregel, decimalen en kolomposities in dezelfde ronde opgelost.'],
+      todo:['Maandag 7 sep: print op het voorgedrukte vel op kantoor (order 1) — dat is de echte toets.','De bewezen instellingen verankeren in het echte werkbestand (v39) + dubbele controleprint als acceptatie — dan pas heet dit af.']},
     {naam:'CMR — end-to-end test', status:'testen',
       gedaan:['Code klaar.'],
       todo:['Nog nooit volledig op een echte zending getest — eerste keer op Windows.']},
