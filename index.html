@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '5 september 2026';
+const UPDATED = '6 september 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Op 5 september zijn thuis de factuur (blok 1), de paklijst (blok 2) en de CMR-vrachtbrief (blok 3) gebouwd en op testdata getest in werkbestand v52; diezelfde avond volgde de gevarendeclaratie (blok 4) in v54: concept en definitief krijgen elk hun eigen datum en de gevarenregels komen rechtstreeks uit de artikelmaster, zoals 1.9. De paklijst valt exact over de factuur; op de CMR is de oorzaak van de fout van 4 september gevonden en weggenomen (een wisregel raakte een tekstvak bij de printer-instelling), bijlading (co-load) staat als één regel met totalen gelijk aan de paklijst, datum en gevarentekst kloppen. Alles is thuis machinaal in orde; bewezen wordt het pas op het voorgedrukte vel. Maandag 7 september op kantoor: order 1, drie knoppen (factuur, paklijst, CMR), print, foto, drie kaarten ja/nee. Daarna de gevaarlijke-stoffen-declaratie (blok 4) en eerst inventariseren wat de rest nog vraagt.';
+const STATUSNU = 'Op 5 september zijn thuis de factuur (blok 1), de paklijst (blok 2), de CMR-vrachtbrief (blok 3) en de gevarendeclaratie (blok 4) gebouwd en op testdata getest in werkbestand v54: concept en definitief krijgen elk hun eigen datum en de gevarenregels komen rechtstreeks uit de artikelmaster, zoals 1.9. Alles is thuis machinaal in orde; bewezen wordt het pas op het voorgedrukte vel. Op 6 september is de rest (blok 5: pickup, stickers, EasyCargo, agenda, EXA, lucht- en koeriersvelden) in kaart gebracht zonder te bouwen: wat er staat, wat ongetest is en waar een gat zit; kantoor krijgt één blad om per gevaarlijk artikel verpakking en noodcontact in de artikelmaster te zetten. Maandag 7 september op kantoor: order 1, drie knoppen (factuur, paklijst, CMR), print, foto, drie kaarten ja/nee, plus zes voorbeeldorders uit 1.9 meenemen.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -188,9 +188,9 @@ const FASES = [
   ]},
   {titel:'Overige 1.9-documenten', sub:'DGD · Pickup · Stickers · EasyCargo · EXA · Landen · Agenda — hierna kan 1.9 met pensioen', oplevering:true, onderdelen:[
     {naam:'DGD — gevaarlijke goederen (zeevracht)', status:'testen', gedaan:['Concept- en definitieve versie met elk een eigen datum, bestandsnaam volgt het stadium, gevarenregels uit de echte artikelmaster — thuis machinaal in orde (5 sep); de kantoorprint op het voorgedrukte formulier moet het nog bevestigen.','Bewezen formulier uit 1.9 rechtstreeks overgezet (geen nabouw).','Afzender, ontvanger, ordernummer, container, laad-/loshaven, bestemming, tarra, verklaringen en plaats/datum komen uit het invulblad (v44, thuis gemeten; nog niet op kantoor geprint).','Gevaren-gegevens per artikel (klasse, UN-nummer, verpakking, noodcontact, uitgebreide omschrijving) komen uit de artikelmaster; de regels zien er uit als op de 1.9-prints.','Ondertekenaar per zending kiesbaar; status draft/final is een keuzelijst; de PDF krijgt automatisch de naam “… draft DGD” of “… DGD final”.'], todo:['Hoe het invulblad op kantoor de artikelmaster leest vastleggen (board) en inbouwen — anders vult een echte order niets.','Print op het voorgedrukte vel op kantoor (collega-proef staat klaar).']},
-    {naam:'Pickup — transport-aanvraag', status:'testen', gedaan:['Gebouwd op 1.9-niveau.'], todo:['Testen. Automatische mail naar de vervoerder komt later.']},
-    {naam:'EasyCargo-export', status:'testen', gedaan:['Gebouwd (metrisch laad-planning-bestand).'], todo:['Testen.']},
-    {naam:'Stickers', status:'testen', gedaan:['Gebouwd (8 per A4, zoals 1.9).'], todo:['Testen.']},
+    {naam:'Pickup — transport-aanvraag', status:'testen', gedaan:['Code staat (overgenomen uit 3.0): aanvraag, mail met voorgevulde tekst, PDF.'], todo:['Mailtekst, cc en onderwerp naast de 1.9-mail leggen (6 sep in kaart); dan testen op kantoor.']},
+    {naam:'EasyCargo-export', status:'testen', gedaan:['Gebouwd (metrisch laad-planning-bestand).'], todo:['Testen tegen het 1.9-voorbeeld (na maandag).']},
+    {naam:'Stickers', status:'aanbouw', gedaan:['Sticker-generator gebouwd (8 per A4, zoals 1.9).'], todo:['De beslislaag (wanneer stickers verplicht zijn: zending, klant, land) is nog niet gebouwd — gevonden 6 sep; eerst het 1.9-voorbeeld meten.']},
     {naam:'EXA-opmaak', status:'uitgedacht', gedaan:[], todo:['1.9-tab uitlezen + de opmaak nabouwen.']},
     {naam:'Landen-documenten (pilot-landen)', status:'uitgedacht', gedaan:[], todo:['Per pilot-land de eisen vastleggen.']},
     {naam:'Agenda', status:'uitgedacht', gedaan:[], todo:['1.9-functie vaststellen + minimaal nabouwen.']},
