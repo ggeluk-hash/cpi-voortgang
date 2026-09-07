@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '6 september 2026';
+const UPDATED = '7 september 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Op 6 september is thuis de agenda-koppeling gebouwd (één klik = afspraak in de gedeelde planningsagenda) en zijn de land-regels voor documenten (EUR1, oorsprong, stickers) op het invulblad gezet; alles op testdata bewezen. Maandag 7 september gaat versie 57 mee naar kantoor voor de eerste echte order: factuur, paklijst en vrachtbrief printen, agenda in Outlook toetsen en de klantlijst ophalen. Niets is klaar tot het op kantoor is goedgekeurd.';
+const STATUSNU = 'De kantoorprint van 7 september bracht een fundamentele fout aan het licht: het netto- en brutogewicht op de documenten klopten niet, en de koppeling met colli/verpakking miste. Diezelfde avond is dat gedicht en tegen een echte order geverifieerd: het juiste gewicht komt er nu automatisch uit, en een ontbrekend gegeven (bijvoorbeeld een onbekend verpakkingstype) licht zichtbaar geel op in plaats van stilzwijgend een verkeerd getal te tonen. De voettekst op factuur en paklijst staat nu ook netjes gecentreerd. Volgende stap: op kantoor twee echte orders verwerken en de nieuwe documenten naast de oude versie leggen. Niets is klaar tot het op kantoor is goedgekeurd.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -174,11 +174,11 @@ const FASES = [
   ]},
   {titel:'Oplevering 1 — CMR · Invoice · Paklijst', sub:'De eerste echte documenten uit één bestand — het eerste evaluatiemoment', oplevering:true, actief:true, onderdelen:[
     {naam:'Invoice (factuur)', status:'testen',
-      gedaan:['Op Windows bevestigd: staat netjes op één pagina (één-pagina-fix afgerond).','Genereert al een PDF; layout en taal verwerkt.','Getrouwe render bereikt — wat je op het scherm ziet komt 1-op-1 uit de printer (printer-onafhankelijk).','Layout-polish afgerond: identiek uitgelijnd met de paklijst, marges/logo/footer netjes — klaar om aan de baas te laten zien.','Gedeelde briefpapier-footer (bank/REX/adres), identiek met de paklijst.','Mockup goedgekeurd.'],
-      todo:['De eerste echte test op Windows — uit één echte order.']},
+      gedaan:['Op Windows bevestigd: staat netjes op één pagina (één-pagina-fix afgerond).','Genereert al een PDF; layout en taal verwerkt.','Getrouwe render bereikt — wat je op het scherm ziet komt 1-op-1 uit de printer (printer-onafhankelijk).','Layout-polish afgerond: identiek uitgelijnd met de paklijst, marges/logo/footer netjes.','Gedeelde briefpapier-footer (bank/REX/adres), identiek met de paklijst — nu ook netjes gecentreerd (7 sep).','Mockup goedgekeurd.','7 sep (avond): het netto-/brutogewicht rekent nu correct door (root-cause-fix, tegen een echte order geverifieerd).'],
+      todo:['Kantoor: twee echte orders verwerken en naast de oude versie leggen.']},
     {naam:'Paklijst', status:'testen',
-      gedaan:['Op Windows bevestigd: staat netjes op één pagina.','Genereert al; layout bevestigd tegen de goedgekeurde mockup.','Getrouwe render + identieke positionering als de factuur (zelfde papier-anker).','Layout-polish afgerond (EORI/VAT-blok, kolommen, footer) — boss-ready.','Zelfde briefpapier-footer als de factuur.'],
-      todo:['De Windows-test — uit dezelfde echte order.']},
+      gedaan:['Op Windows bevestigd: staat netjes op één pagina.','Genereert al; layout bevestigd tegen de goedgekeurde mockup.','Getrouwe render + identieke positionering als de factuur (zelfde papier-anker).','Layout-polish afgerond (EORI/VAT-blok, kolommen, footer).','Zelfde briefpapier-footer als de factuur — nu ook netjes gecentreerd (7 sep).','7 sep (avond): het netto-/brutogewicht rekent nu correct door (root-cause-fix, tegen een echte order geverifieerd).'],
+      todo:['Kantoor: twee echte orders verwerken en naast de oude versie leggen.','Bij meerdere artikelen op één pallet is de tellingsweergave nog niet definitief — wordt uitgezocht.']},
     {naam:'CMR-vrachtbrief — grootste risico', status:'testen',
       gedaan:['5 sep (thuis): oorzaak van de kantoorfout van 4 sep gevonden en weggenomen; bijlading (co-load) als één regel, totalen gelijk aan de paklijst; datum en gevarentekst gefixt; werkbestand v52.','1 september: print in één keer goed op het voorgedrukte vel op de kantoorprinter — alle vakken raak, één pagina, geen speciale instellingen (acht gemeten proefprints; akkoord op de eindprint).','Verpakkingswijze (DS), totaalregel, decimalen en kolomposities in dezelfde ronde opgelost.'],
       todo:['Maandag 7 sep: print op het voorgedrukte vel op kantoor (order 1) — dat is de echte toets.','De bewezen instellingen verankeren in het echte werkbestand (v39) + dubbele controleprint als acceptatie — dan pas heet dit af.']},
