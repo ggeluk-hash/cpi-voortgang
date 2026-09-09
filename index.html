@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '8 september 2026';
+const UPDATED = '9 september 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Op 8 september is op kantoor opnieuw een echte order door het systeem gehaald. Een al langer vermoed uitlijningspunt op de vrachtbrief is met een zelfmetend controlerooster hard getoetst op drie echte prints — het lijkt inmiddels vanzelf opgelost, al is dat nog niet honderd procent zeker zonder herhaling. Onderweg ontstond kort een fout door een eigen wijziging; die is dezelfde avond nog gevonden en hersteld voordat er schade was. Twee kleine tekst-/weergavepunten op de factuur en de vrachtbrief zijn daarna gecorrigeerd, elk eerst getoetst door een onafhankelijke review voordat ze zijn doorgevoerd. Eén hardnekkig punt — het document toont soms nog verouderde gegevens in plaats van de nieuwe order — is nog niet opgelost, maar wel teruggeleid naar een eerdere, deels al begrepen oorzaak, zodat de volgende poging gerichter kan. Niets is klaar tot het op kantoor is goedgekeurd.';
+const STATUSNU = 'Op 9 september is op kantoor opnieuw een echte order door het systeem gehaald. Daarbij kwamen enkele velden (verzenddatum, leveringsvoorwaarden, één identificatienummer) niet op de documenten terecht, terwijl ze op het invoerscherm zelf wel klopten. Een gerichte, systematische controle over het hele systeem heeft de oorzaak gevonden: een paar afzonderlijke koppelingen die in de testomgeving altijd goed werken, maar in de route van een echte order nog niet werden aangeroepen. Dat is nu helder in kaart gebracht, opgeknipt in kleine, losstaande stappen, en klaar om stuk voor stuk gebouwd en getoetst te worden. Ook is opnieuw gekeken naar een bekend aandachtspunt in de opmaak van de vrachtbrief; die blijkt op deze printer een net iets andere schaal te hebben dan verwacht, en wordt in een aparte sessie samen rechtgezet. Niets is klaar tot het op kantoor is goedgekeurd.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
