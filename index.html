@@ -332,7 +332,7 @@ document.getElementById('datum').textContent = 'Laatst bijgewerkt: '+UPDATED;
 document.getElementById('statusnu').innerHTML = '<b>Nu:</b> '+esc(STATUSNU);
 document.getElementById('uitdaging').textContent = UITDAGING;
 document.getElementById('eigentijdbox').innerHTML = `<div class="t">Eigen tijd erin gestoken (avonden/weekenden)</div>
-  <div class="cijfer">${EIGENTIJD.uren} uur<span>sinds ${esc(EIGENTIJD.periode)}, ±${EIGENTIJD.perWeek} uur/week</span></div>
+  <div class="cijfer">±${EIGENTIJD.uren} uur<span>ruwe schatting sinds ${esc(EIGENTIJD.periode)}, gemiddeld ±${EIGENTIJD.perWeek} uur/week</span></div>
   <div class="d">Los van ${EIGENTIJD.kantoorApart} uur op bekende kantoordagen — die tellen hier expres niet mee, dit is alléén de tijd naast de functie.</div>
   <div class="tellers">
     <div class="teller"><b>±${EIGENTIJD.resterend} uur</b><span>geschat nog te gaan (totaal, alle uren)</span></div>
