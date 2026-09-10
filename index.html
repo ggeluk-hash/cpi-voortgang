@@ -57,6 +57,16 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 .uitdaging{border:1.5px solid var(--blue);background:#EFF5FF;border-radius:14px;padding:14px 18px;margin:22px 0 18px}
 .uitdaging .t{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 .uitdaging .d{font-size:13px;color:#1c3d5e;line-height:1.6}
+.eigentijd{border:1.5px solid var(--green);background:#EDF9F1;border-radius:14px;padding:14px 18px;margin:0 0 18px}
+.eigentijd .t{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.eigentijd .cijfer{font-size:26px;font-weight:700;color:#0d5c2a}
+.eigentijd .cijfer span{font-size:13px;font-weight:400;color:#1c3d1f;margin-left:6px}
+.eigentijd .d{font-size:13px;color:#1c3d1f;line-height:1.6;margin-top:6px}
+.eigentijd .tellers{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.eigentijd .teller{background:var(--white);border-radius:10px;padding:8px 12px;flex:1;min-width:150px}
+.eigentijd .teller b{display:block;font-size:15px;color:var(--dark)}
+.eigentijd .teller span{font-size:10.5px;color:#6b7268}
+.eigentijd .fn{font-size:10px;color:#5a8a68;font-style:italic;line-height:1.5;margin-top:8px}
 /* afgevinkt */
 .gedaan{background:rgba(0,154,68,.06);border:1px solid rgba(0,154,68,.3);border-radius:14px;padding:13px 18px;margin-bottom:16px}
 .gedaan-t{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:7px}
@@ -145,6 +155,16 @@ const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', test
 const STATUSNU = 'Thuis (10 september) is de eerste stap van "een afwijkend afleveradres" gebouwd en getest: een klant met meerdere afleveradressen kan er nu één kiezen uit een lijst, in plaats van steeds hetzelfde adres. Het écht opslaan van een nieuw adres komt in een latere stap, zodra het klantenbestand daarvoor klaar is. Daarnaast zijn vier kleine, losse gebreken gevonden en meteen gerepareerd: een order met veel artikelregels verloor voorheen ongemerkt de regels voorbij de negende — dat kan nu niet meer; de regelnummering op de factuur/paklijst-artikelen werkte niet door voorbij regel twee; een verkeerd bestandspad naar het klantenbestand is gecorrigeerd; en twee losse document-onderdelen (labels en de transport-aanvraag-mail) zijn voor het eerst ooit getest en werken foutloos. Ook is afgesproken dat een grote bestelling straks netjes over twee pagina\'s mag doorlopen in plaats van steeds kleiner geperst te worden — dat wordt in een volgende sessie gebouwd. Niets is klaar tot het op kantoor is goedgekeurd.';
 
 const UITDAGING = 'De eerste deadline (31 juli) is gehaald noch losgelaten: het echte obstakel is niet de bouw — dat gaat al maanden hard — maar het aantal keren dat er daadwerkelijk op kantoor getoetst is. Dat is tot nu toe nog niet één keer gelukt. Nieuw richtpunt: 31 oktober voor het héle CPI-bestand (= 1.9 volledig vervangen), onder de voorwaarde dat er in die periode ook echt een paar keer op kantoor getoetst wordt — dát bepaalt het tempo, niet de code.';
+
+const EIGENTIJD = {
+  uren: 260,
+  periode: '12 juni – 10 september (14 weken)',
+  perWeek: 20,
+  kantoorApart: 35,
+  tellerLangzaam: 'rond eind maart 2027',
+  tellerHuidig: 'rond eind november 2026',
+  voetnoot: 'Gemeten uit de eigen sessie-logs: aaneengesloten werkblokken (nieuwe pauze &gt;45 min = nieuw blok), zodat avondeten/slaap niet meetellen. Bekende kantoordagen (7, samen 35 uur) zijn er apart uitgehaald — dit cijfer is dus alléén avonden/weekenden in eigen tijd, boven op de functie. De twee tellers zijn een ruwe doorrekening (huidig tempo vs. 8 uur/week) — de kantoor-toetsing zelf is geen uren-probleem en bepaalt het echte tempo.'
+};
 
 const DISCLAIMER = 'De percentages zijn een indicatie van de voortgang — in het verleden behaalde resultaten bieden geen garantie voor de toekomst.';
 
@@ -261,6 +281,7 @@ const MILESTONES = [
     <div class="tl" id="tl"></div>
     <div id="minibars"></div>
     <div class="compmini" id="compmini"></div>
+    <div class="eigentijd" id="eigentijdbox"></div>
     <div class="uitdaging"><div class="t">De uitdaging die ik mezelf stel</div><div class="d" id="uitdaging"></div></div>
     <div class="gedaan"><div class="gedaan-t">Dit staat al — geen beloftes</div><ul id="gedaan"></ul></div>
     <button class="btn" onclick="go(2)">De stappen bekijken →</button>
@@ -308,6 +329,14 @@ const lopend = FASES.find(f=>f.actief);
 document.getElementById('datum').textContent = 'Laatst bijgewerkt: '+UPDATED;
 document.getElementById('statusnu').innerHTML = '<b>Nu:</b> '+esc(STATUSNU);
 document.getElementById('uitdaging').textContent = UITDAGING;
+document.getElementById('eigentijdbox').innerHTML = `<div class="t">Eigen tijd erin gestoken (avonden/weekenden)</div>
+  <div class="cijfer">${EIGENTIJD.uren} uur<span>sinds ${esc(EIGENTIJD.periode)}, ±${EIGENTIJD.perWeek} uur/week</span></div>
+  <div class="d">Los van ${EIGENTIJD.kantoorApart} uur op bekende kantoordagen — die tellen hier expres niet mee, dit is alléén de tijd naast de functie.</div>
+  <div class="tellers">
+    <div class="teller"><b>${esc(EIGENTIJD.tellerHuidig)}</b><span>bij het huidige tempo doorgetrokken</span></div>
+    <div class="teller"><b>${esc(EIGENTIJD.tellerLangzaam)}</b><span>bij aanname van 8 uur/week</span></div>
+  </div>
+  <div class="fn">${EIGENTIJD.voetnoot}</div>`;
 document.getElementById('gedaan').innerHTML = GEDAAN.map(g=>`<li>${esc(g)}</li>`).join('');
 document.getElementById('disc1').textContent = DISCLAIMER;
 document.getElementById('disc2').textContent = DISCLAIMER;
