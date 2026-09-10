@@ -144,7 +144,7 @@ const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', test
 
 const STATUSNU = 'Thuis (10 september) is de eerste stap van "een afwijkend afleveradres" gebouwd en getest: een klant met meerdere afleveradressen kan er nu één kiezen uit een lijst, in plaats van steeds hetzelfde adres. Het écht opslaan van een nieuw adres komt in een latere stap, zodra het klantenbestand daarvoor klaar is. Daarnaast zijn vier kleine, losse gebreken gevonden en meteen gerepareerd: een order met veel artikelregels verloor voorheen ongemerkt de regels voorbij de negende — dat kan nu niet meer; de regelnummering op de factuur/paklijst-artikelen werkte niet door voorbij regel twee; een verkeerd bestandspad naar het klantenbestand is gecorrigeerd; en twee losse document-onderdelen (labels en de transport-aanvraag-mail) zijn voor het eerst ooit getest en werken foutloos. Ook is afgesproken dat een grote bestelling straks netjes over twee pagina\'s mag doorlopen in plaats van steeds kleiner geperst te worden — dat wordt in een volgende sessie gebouwd. Niets is klaar tot het op kantoor is goedgekeurd.';
 
-const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
+const UITDAGING = 'De eerste deadline (31 juli) is gehaald noch losgelaten: het echte obstakel is niet de bouw — dat gaat al maanden hard — maar het aantal keren dat er daadwerkelijk op kantoor getoetst is. Dat is tot nu toe nog niet één keer gelukt. Nieuw richtpunt: 31 oktober voor het héle CPI-bestand (= 1.9 volledig vervangen), onder de voorwaarde dat er in die periode ook echt een paar keer op kantoor getoetst wordt — dát bepaalt het tempo, niet de code.';
 
 const DISCLAIMER = 'De percentages zijn een indicatie van de voortgang — in het verleden behaalde resultaten bieden geen garantie voor de toekomst.';
 
@@ -156,7 +156,7 @@ const GEDAAN = [
   'We weten nu wát we niet wisten over de export-regels — en het zit nu in het systeem, niet in iemands hoofd.',
 ];
 
-// fases bij hun naam. oplevering:true = telt mee tot 1.9-pensioen (31-07).
+// fases bij hun naam. oplevering:true = telt mee tot 1.9-pensioen (31-10, herzien 10-09 — was 31-07).
 const FASES = [
   {titel:'Fundament', sub:'De masterdata-motor + het invoerscherm', oplevering:true, onderdelen:[
     {naam:'Klant- + artikel-lookup', status:'testen',
@@ -192,10 +192,10 @@ const FASES = [
     {naam:'EasyCargo-export', status:'testen', gedaan:['Gebouwd (metrisch laad-planning-bestand).'], todo:['Testen tegen het 1.9-voorbeeld (na maandag).']},
     {naam:'Stickers', status:'testen', gedaan:['Sticker-generator gebouwd (8 per A4, zoals 1.9) — 10 september voor het eerst getest, foutloos.'], todo:['De beslislaag (wanneer stickers verplicht zijn: zending, klant, land) is nog niet gebouwd — eerst het 1.9-voorbeeld meten + de landenlijst vaststellen.']},
     {naam:'EXA-opmaak', status:'uitgedacht', gedaan:[], todo:['1.9-tab uitlezen + de opmaak nabouwen.']},
-    {naam:'Landen-documenten (pilot-landen)', status:'uitgedacht', gedaan:[], todo:['Per pilot-land de eisen vastleggen.']},
-    {naam:'Agenda', status:'uitgedacht', gedaan:[], todo:['1.9-functie vaststellen + minimaal nabouwen.']},
+    {naam:'Landen-documenten (pilot-landen)', status:'aanbouw', gedaan:['Het mechanisme staat en draait al mee in de echte documentkeuze (6 sep): 15 landen geladen, per zending wordt automatisch land-eis / klantkeuze / niet-nodig bepaald voor de belangrijkste documenten.'], todo:['Per pilot-land de precieze eisen nalopen en aanvullen; de klant-specifieke laag erbovenop moet nog (wacht op een kantoorlijst).']},
+    {naam:'Agenda', status:'testen', gedaan:['Gebouwd (6 sep): agenda-item aanmaken bij een zending, werkt op Mac (ICS) én Windows (Outlook).'], todo:['Testen op kantoor: komt het item goed aan in de echte Outlook-agenda.']},
   ]},
-  {titel:'Verrijking & communicatie', sub:'Ná 31-07 — hier wordt het pas echt interessant', oplevering:false, onderdelen:[
+  {titel:'Verrijking & communicatie', sub:'Ná 31-10 — hier wordt het pas echt interessant', oplevering:false, onderdelen:[
     {naam:'Klant-overrides + meerdere afleveradressen', status:'aanbouw', gedaan:['Kiezen uit meerdere bekende afleveradressen: gebouwd en getest.'], todo:['Een nieuw afleveradres zelf kunnen opslaan (wacht op het vernieuwde klantenbestand).','Overige klant-specifieke afspraken (stickers, documenten, verpakking) nog uit te werken.']},
     {naam:'Masterdata verrijken (artikel → debiteur via ERP)', status:'uitgedacht', gedaan:[], todo:['Data verrijken op de bestaande lijsten.']},
     {naam:'Routing & communicatie met logistiek', status:'uitgedacht', gedaan:[], todo:['Eén knop → juiste route (CS / logistiek / vervoerder); helder verwachtingspatroon.']},
@@ -203,7 +203,7 @@ const FASES = [
     {naam:'Landen-documenten breed (88 landen)', status:'uitgedacht', gedaan:[], todo:['De brede landen- / compliance-laag.']},
     {naam:'EXA-automatisering', status:'uitgedacht', gedaan:[], todo:['Het EXA-handwerk automatiseren.']},
   ]},
-  {titel:'Zelflerend', sub:'Ná 31-07 — de lerende laag', oplevering:false, onderdelen:[
+  {titel:'Zelflerend', sub:'Ná 31-10 — de lerende laag', oplevering:false, onderdelen:[
     {naam:'Lerende laag: afwijking → voorstel → vast', status:'uitgedacht', gedaan:[], todo:['Het systeem leert van afwijkingen; de masterdata groeit naar de "enige waarheid".']},
   ]},
 ];
@@ -240,10 +240,10 @@ const BIJVANGST = {sub:'Inzichten en waarde die naar voren kwamen tijdens het we
 
 const VOETNOOT = 'Eigen projecten, los van de CPI-live-gang (niet in deze balken): Transport-planning · KAM (key accounts) · Offerte-module · PrijsBeheer. MSDS loopt hierboven als parallel spoor mee omdat het de gevaarlijke-goederen-data rechtstreeks aan CPI levert.';
 
-// mijlpalen op de tijdlijn-balk (pos = fractie 0-1 van de weg naar 31-07)
+// mijlpalen op de tijdlijn-balk (pos = fractie 0-1 van de weg naar 31-10, herzien 10-09)
 const MILESTONES = [
-  {label:'Oplevering 1 — eerste evaluatie', pos:0.62},
-  {label:'1.9 volledig vervangen · 31-07', pos:1.0, doel:true},
+  {label:'Oplevering 1 — eerste evaluatie', pos:0.55},
+  {label:'1.9 volledig vervangen · 31-10', pos:1.0, doel:true},
 ];
 </script>
 <!-- ══ EINDE DATABLOK ══ -->
@@ -278,7 +278,7 @@ const MILESTONES = [
     <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:8px">Klik een fase open voor de onderdelen — en een onderdeel voor wat er al staat en wat er nog moet. De volgorde volgt gewoon hoe we bouwen: fundament eerst, dan de documenten, dan de rest.</p>
     <div class="legend" id="legend"></div>
     <div class="compliance" id="compliance"></div>
-    <div class="sectie-h">Tot 1.9 met pensioen — de oplevering (31 juli)</div>
+    <div class="sectie-h">Tot 1.9 met pensioen — de oplevering (31 oktober)</div>
     <div id="opl-list"></div>
     <div class="sectie-h">Daarna — verrijken & slimmer</div>
     <div id="daarna-list"></div>
@@ -331,7 +331,7 @@ document.getElementById('tl').innerHTML = tl;
 
 // mini-balken
 function miniBar(lbl,p,cls){return `<div class="pbar ${cls||''}"><div class="pbar-top"><div class="pbar-lbl">${esc(lbl)}</div><div class="pbar-pct">${p}%</div></div><div class="track"><div style="width:${p}%"></div></div></div>`;}
-let mb = `<div class="mini-h">Tot 31-07</div>`;
+let mb = `<div class="mini-h">Tot 31-10</div>`;
 opleveringFases.forEach(f=> mb += miniBar(f.titel, faseP(f)));
 mb += `<div class="mini-h">Daarna</div>`;
 daarnaFases.forEach(f=> mb += miniBar(f.titel, faseP(f)));
