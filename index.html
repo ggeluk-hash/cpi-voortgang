@@ -134,7 +134,7 @@ h1{font-size:clamp(21px,3.4vw,30px);font-weight:700;line-height:1.2;margin-botto
 <!-- ══ DATABLOK — pas hier status/teksten aan; alles rendert hieruit.
      Status uit PARITEIT_19.md "Status nu" + vba/skelet/STATUS.md (echte bouw-staat). ══ -->
 <script>
-const UPDATED = '9 september 2026';
+const UPDATED = '10 september 2026';
 // tagline — creatieve werkversie (vrij te wisselen). Alternatieven in het LEES_DIT/rapport.
 const TAGLINE = 'Leuker kunnen we het niet maken — wél makkelijker.';
 const SUBLINE = 'Zoveel export-regels — en ze zitten allemaal in de output gevangen.';
@@ -142,7 +142,7 @@ const LIVELINK = 'https://ggeluk-hash.github.io/cpi-voortgang/';
 const MAP = {uitgedacht:0.15, aanbouw:0.4, testen:0.7, klaar:1};
 const STLABEL = {uitgedacht:'Spec — nog te bouwen', aanbouw:'In aanbouw', testen:'Gebouwd — te testen', klaar:'Klaar'};
 
-const STATUSNU = 'Op 9 september werden op kantoor drie ontbrekende koppelingen gevonden (verzenddatum, leveringsvoorwaarden, één identificatienummer kwamen niet op de documenten terecht). Diezelfde dag, thuis: de eerste en kleinste van die koppelingen is gebouwd en getoetst met een echte order — verzenddatum, leveringsvoorwaarden en het identificatienummer komen nu wél correct op de factuur en de paklijst terecht. De resterende twee koppelingen (transport per zee/lucht/koerier, en een afwijkend afleveradres) staan als losse, kleine stappen klaar voor een volgende sessie. Ook is opnieuw gekeken naar een bekend aandachtspunt in de opmaak van de vrachtbrief; die blijkt op deze printer een net iets andere schaal te hebben dan verwacht, en wordt in een aparte sessie samen rechtgezet. Niets is klaar tot het op kantoor is goedgekeurd.';
+const STATUSNU = 'Thuis (10 september) is de eerste stap van "een afwijkend afleveradres" gebouwd en getest: een klant met meerdere afleveradressen kan er nu één kiezen uit een lijst, in plaats van steeds hetzelfde adres. Het écht opslaan van een nieuw adres komt in een latere stap, zodra het klantenbestand daarvoor klaar is. Daarnaast zijn vier kleine, losse gebreken gevonden en meteen gerepareerd: een order met veel artikelregels verloor voorheen ongemerkt de regels voorbij de negende — dat kan nu niet meer; de regelnummering op de factuur/paklijst-artikelen werkte niet door voorbij regel twee; een verkeerd bestandspad naar het klantenbestand is gecorrigeerd; en twee losse document-onderdelen (labels en de transport-aanvraag-mail) zijn voor het eerst ooit getest en werken foutloos. Ook is afgesproken dat een grote bestelling straks netjes over twee pagina\\'s mag doorlopen in plaats van steeds kleiner geperst te worden — dat wordt in een volgende sessie gebouwd. Niets is klaar tot het op kantoor is goedgekeurd.';
 
 const UITDAGING = 'Wat ik hierbij op tafel leg: ik wil mezelf uitdagen om op 31-7 niet alleen de eerste 3 documenten, maar het héle CPI-bestand op te leveren (= 1.9 volledig vervangen). Ik kan nu nog niet inschatten of dat haalbaar is — maar ik wil het zichtbaar maken en hier bijhouden. Hoe meer ruimte, hoe haalbaarder.';
 
@@ -188,15 +188,15 @@ const FASES = [
   ]},
   {titel:'Overige 1.9-documenten', sub:'DGD · Pickup · Stickers · EasyCargo · EXA · Landen · Agenda — hierna kan 1.9 met pensioen', oplevering:true, onderdelen:[
     {naam:'DGD — gevaarlijke goederen (zeevracht)', status:'testen', gedaan:['Concept- en definitieve versie met elk een eigen datum, bestandsnaam volgt het stadium, gevarenregels uit de echte artikelmaster — thuis machinaal in orde (5 sep); de kantoorprint op het voorgedrukte formulier moet het nog bevestigen.','Bewezen formulier uit 1.9 rechtstreeks overgezet (geen nabouw).','Afzender, ontvanger, ordernummer, container, laad-/loshaven, bestemming, tarra, verklaringen en plaats/datum komen uit het invulblad (v44, thuis gemeten; nog niet op kantoor geprint).','Gevaren-gegevens per artikel (klasse, UN-nummer, verpakking, noodcontact, uitgebreide omschrijving) komen uit de artikelmaster; de regels zien er uit als op de 1.9-prints.','Ondertekenaar per zending kiesbaar; status draft/final is een keuzelijst; de PDF krijgt automatisch de naam “… draft DGD” of “… DGD final”.'], todo:['Hoe het invulblad op kantoor de artikelmaster leest vastleggen (board) en inbouwen — anders vult een echte order niets.','Print op het voorgedrukte vel op kantoor (collega-proef staat klaar).']},
-    {naam:'Pickup — transport-aanvraag', status:'testen', gedaan:['Code staat (overgenomen uit 3.0): aanvraag, mail met voorgevulde tekst, PDF.'], todo:['Mailtekst, cc en onderwerp naast de 1.9-mail leggen (6 sep in kaart); dan testen op kantoor.']},
+    {naam:'Pickup — transport-aanvraag', status:'testen', gedaan:['Code staat (overgenomen uit 3.0): aanvraag, mail met voorgevulde tekst, PDF.','10 september: de aanvraag + PDF voor het eerst getest, foutloos.'], todo:['Mailtekst, cc en onderwerp naast de 1.9-mail leggen; dan de e-mail zelf testen op kantoor.']},
     {naam:'EasyCargo-export', status:'testen', gedaan:['Gebouwd (metrisch laad-planning-bestand).'], todo:['Testen tegen het 1.9-voorbeeld (na maandag).']},
-    {naam:'Stickers', status:'aanbouw', gedaan:['Sticker-generator gebouwd (8 per A4, zoals 1.9).'], todo:['De beslislaag (wanneer stickers verplicht zijn: zending, klant, land) is nog niet gebouwd — gevonden 6 sep; eerst het 1.9-voorbeeld meten.']},
+    {naam:'Stickers', status:'testen', gedaan:['Sticker-generator gebouwd (8 per A4, zoals 1.9) — 10 september voor het eerst getest, foutloos.'], todo:['De beslislaag (wanneer stickers verplicht zijn: zending, klant, land) is nog niet gebouwd — eerst het 1.9-voorbeeld meten + de landenlijst vaststellen.']},
     {naam:'EXA-opmaak', status:'uitgedacht', gedaan:[], todo:['1.9-tab uitlezen + de opmaak nabouwen.']},
     {naam:'Landen-documenten (pilot-landen)', status:'uitgedacht', gedaan:[], todo:['Per pilot-land de eisen vastleggen.']},
     {naam:'Agenda', status:'uitgedacht', gedaan:[], todo:['1.9-functie vaststellen + minimaal nabouwen.']},
   ]},
   {titel:'Verrijking & communicatie', sub:'Ná 31-07 — hier wordt het pas echt interessant', oplevering:false, onderdelen:[
-    {naam:'Klant-overrides + meerdere afleveradressen', status:'uitgedacht', gedaan:[], todo:['Override-keten + meerdere afleveradressen uitwerken.']},
+    {naam:'Klant-overrides + meerdere afleveradressen', status:'aanbouw', gedaan:['Kiezen uit meerdere bekende afleveradressen: gebouwd en getest.'], todo:['Een nieuw afleveradres zelf kunnen opslaan (wacht op het vernieuwde klantenbestand).','Overige klant-specifieke afspraken (stickers, documenten, verpakking) nog uit te werken.']},
     {naam:'Masterdata verrijken (artikel → debiteur via ERP)', status:'uitgedacht', gedaan:[], todo:['Data verrijken op de bestaande lijsten.']},
     {naam:'Routing & communicatie met logistiek', status:'uitgedacht', gedaan:[], todo:['Eén knop → juiste route (CS / logistiek / vervoerder); helder verwachtingspatroon.']},
     {naam:'Output automatisch naar de klantenmap', status:'uitgedacht', gedaan:[], todo:['Documenten automatisch in de klantenmap; canonieke namen.']},
